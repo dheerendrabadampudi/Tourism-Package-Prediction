@@ -11,8 +11,20 @@ from huggingface_hub import login, HfApi
 
 # Define constants for the dataset and output paths
 api = HfApi(token=os.getenv("hf_token_dheerendra"))
-DATASET_PATH = "hf://datasets/dheerendrabadampudi/Tourism-Package-Prediction/tourism.csv"
+# DATASET_PATH = "hf://datasets/dheerendrabadampudi/Tourism-Package-Prediction/tourism.csv"
+
+
+# Get project root directory dynamically
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+
+# Construct dataset path
+DATASET_PATH = os.path.join(BASE_DIR, "tourism_package", "tourism.csv")
+
+# Load dataset
 tourism_dataset = pd.read_csv(DATASET_PATH)
+
+
+
 print("Dataset loaded successfully.")
 
 # Define the target variable for the classification task
